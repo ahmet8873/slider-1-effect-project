@@ -1,24 +1,48 @@
-import logo from './logo.svg';
+
 import './App.css';
+import{FiChevronRight,FiChevronLeft} from 'react-icons/fi'
+import {FaQuoteRight }from 'react-icons/fa'
+import data from './data'
+import {useState} from 'react'
 
 function App() {
+
+ const[people,setPeople]=useState(data)
+const[index,setIndex]=useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className='container'>
+      
+      <div className="title">
+        <h2>
+          <span className='span'>/</span> Revievs
+        </h2>
+      </div>
+      
+      <div className="section-center">
+        {people.map((person,personIndex)=>{
+          const{id,image,name,title,quote}=person;
+          // some stuff
+          return(
+            <article className='article' key={id}>
+              <img src={image} alt={name} />
+              <h4>{name}</h4>
+              <p>{title}</p>
+              <p>{quote}</p>
+              <FaQuoteRight/>
+            </article>
+          )
+        })}
+       
+        <button className='previous'>
+          <FiChevronLeft></FiChevronLeft>
+        </button>
+        <button className='next'>
+          <FiChevronRight></FiChevronRight>
+        </button>
+      </div>
+
+     
+    </section>
   );
 }
 
